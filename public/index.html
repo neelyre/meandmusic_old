@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="soundtrack">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+
+  </head>
+
+  <body ng-controller="MainController as ctrl">
+
+
+<!-- ==========LOGIN CODE BELOW======== -->
+     <p>test</p>
+    {{ ctrl.test }}
+
+ <!-- //login form// -->
+<div class="login" ng-if="ctrl.displayLogin">
+  <h3>Login</h3>
+      <form ng-submit="ctrl.login(userPass)">
+        <input type="text" class="loginForm" ng-model="userPass.username" placeholder="username"/>
+        <input type="password" class="loginForm" ng-model="userPass.password" placeholder="password"/>
+      </br><input type="submit" class="formSubmit"/>
+      </form>
+    <p class="noAccount">Don't have an account? </br></p><p class="createAccount"><a href="#" ng-click="ctrl.displayRegistrationDiv();">Create one now</a></p>
+</div>  -
+  <!-- register form -->
+   <div class="register" ng-if="ctrl.displayRegistration">
+    < <h3>Register New User</h3>
+
+      <form ng-submit="ctrl.CreateUser(userPass)">
+
+        <input type="text" class="registerForm" ng-model="userPass.username" placeholder="username"/>
+        <input type="password" class="registerForm" ng-model="userPass.password" placeholder="password"/>
+        <input type="text" class="registerForm" ng-model="userPass.first_name" placeholder="first name"/>
+        <input type="text" class="registerForm" ng-model="userPass.last_name" placeholder="last name"/>
+        <input type="integer" class="registerForm" ng-model="userPass.age" placeholder="age"/>
+        <input type="text" class="registerForm" ng-model="userPass.gender" placeholder="gender"/>
+
+      </br><input type="submit" class="registerFormSubmit"/>
+    </form>
+
+      <p>Logged inusername: {{ ctrl.user.username }} </p>
+
+      <h4 ng-click="ctrl.getUsers()">Clickk to see secret stuff</h4>
+      <div> {{ctrl.error }} </div>
+</div
+
+
+      <h3 ng-if="ctrl.displayLogOut">Hello, {{ctrl.user.first_name}}</h3>
+      <button class="logout" ng-click="ctrl.logout();">Log Out</button>
+
+      <div class="userList" ng-if="ctrl.displayLogOut">
+
+        <!-- =========END LOGIN CODE========= -->
+
+<div class="container">
+
+
+<h1>Welcome to Learn about music</h1>
+
+<h3> here you can search our database to find out what type of instrument is common to a music genre, current albums and artists of music style and even access to videos about playing instruments in that field.</h3>
+
+<h3>to get started, select if you want to search by instrument or by music genre</h3>
+
+
+  <div class="leftcolumn">
+<button ng-click="ctrl.instrumentInclude()">Instrument</button>
+</div>
+  <div class="rightcolumn">
+<button ng-click="ctrl.genreInclude()">Genre</button>
+</div>
+<div ng-include="ctrl.includePath"></div>
+</div>

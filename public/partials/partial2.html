@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="soundtrack">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- JavaScript -->
+    <script src="../app.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+
+
+  <body ng-controller="MainController as ctrl">
+
+<h3>Which genre of music do you want to choose from?</h3>
+
+<ul>
+  <button ng-click="ctrl.listWoodwinds()">Jazz</button>
+  <button ng-click="ctrl.strings()">Rock</button>
+  <button ng-click="ctrl.percussion()">Blues</button>
+  <button ng-click="ctrl.brass()">Classical</button>
+</ul>
