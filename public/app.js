@@ -9,9 +9,44 @@ app.controller('MainController', ['$http', function($http){
   this.genreInclude = function(){
     this.includePath = 'partials/partial2.html';
   }
-  // this.listWoodwinds() = function(){
-  //   this.includePath = 'partials/woodwinds.html';
-  // }
+  this.listWoodwinds = function(){
+    this.includePath = 'partials/woodwinds.html';
+  }
+  this.listStrings = function(){
+    this.includePath = 'partials/strings.html';
+  }
+  this.listBrass = function(){
+    this.includePath = 'partials/brass.html';
+  }
+  this.listPercussion = function(){
+    this.includePath = 'partials/percussion.html';
+  }
+  this.listOther = function(){
+    this.includePath = 'partials/other.html';
+  }
+  this.listJazz = function(){
+    this.includePath = 'partials/jazz.html';
+  }
+  this.piano = function(){
+    this.includePath = 'partials/single_instruments/piano.html';
+  }
+  this.double_bass = function(){
+    this.includePath = 'partials/single_instruments/double_bass.html';
+  }
+  this.drums = function(){
+    this.includePath = 'partials/single_instruments/drums.html';
+  }
+  this.guitar = function(){
+    this.includePath = 'partials/single_instruments/guitar.html';
+  }
+  this.saxophonse = function(){
+    this.includePath = 'partials/single_instruments/saxophone.html';
+  }
+
+
+
+
+
   // this.includePath = 'partials/partial1.html';
 
   this.url = 'http://localhost:3000/';
