@@ -1,7 +1,14 @@
 const app = angular.module('soundtrack', []);
 
 app.controller('MainController', ['$http', function($http){
+  console.log('this is happening');
   const controller = this;
+
+  this.login = function(userPass) {
+  console.log(userPass);
+}
+
+
   this.test = "hi"
   this.instrumentInclude = function(){
 		this.includePath = 'partials/partial1.html';
@@ -46,23 +53,85 @@ app.controller('MainController', ['$http', function($http){
 
 
 
+//discogs callback//
+
+
 
   // this.includePath = 'partials/partial1.html';
 
-  this.url = 'http://localhost:3000/';
+
+  this.user = {};
+  this.users = [];
+  this.userPass = {};
+
+  this.url = 'http://localhost:3000';
 
   console.log('hi');
+
+
+this.addReview = function(){
+  $http({
+            method: 'post',
+            url: this.url + '/reviews/',
+            data: {
+              user_id: controller.user.id,
+              comment_text: controller.newText
+            }
+          }).then(function(response){
+            console.log(response);
+        }, function(){
+            console.log('error');
+        });
+    }
+
+    this.editReview = function(id){
+      $http({
+        method: 'get',
+        url: this.url + '/reviews/' + id
+      }).then(function(response){
+        console.log(controller.currentReview);
+      }, function(error){
+        console.log(error,'review error')
+      })
+    };
+
+    this.publishReviewEdit = function(){
+    $http({
+      method: 'put',
+      url: this.url + '/reviews/' + this.currentReview.id,
+      data: this.currentReview
+    }).then(function(response){
+      controller.hideAllCenterDivs();
+      controller.displaySearchForm = true;
+    }, function(error){
+      console.log(error, 'error from review edit');
+    })
+  };
+
+    this.deleteReview = function(id){
+  $http({
+    method: 'delete',
+    url: this.url + '/reviews/' + id
+  }).then(function(response){
+    console.log(response);
+  }, function(error){
+    console.log(error, 'error from delete route');
+  })
+};
+
+
+
 
   // ============LOGIN METHODS BELOW=========
 
 //user account create///
-   this.CreateUser = function(userPass) {
+   this.createUser = function(userPass) {
     //  this.displayLogout = true;
      console.log('creating user');
      $http({
        method: 'POST',
-       url: this.url + 'users',
-       data: { user: { username: userPass.username, password: userPass.password, first_name: userPass.first_name, last_name: userPass.last_name, age: userPass.age, gender: userPass.gender }},
+       url: this.url + '/users',
+       data: { user: { username: userPass.username, password: userPass.password }},
      }).then(function(response) {
        controller.user = response.data;
        console.log(controller.user,'logged user');
@@ -75,28 +144,18 @@ app.controller('MainController', ['$http', function($http){
 // /user login///
 
 this.login = function(userPass) {
-//      console.log('login user');
-// console.log(userPass);
-
 $http({
-
   method: 'POST',
-  url: this.url + 'users/login',
+  url: this.url + '/users/login',
   data: { user: { username: userPass.username, password: userPass.password }},
 }).then(function(response) {
   console.log(response);
-  console.log('response on login');
-  this.user = response.data.user;
-  // controller.user = response.data.user;
-  // console.log(controller.user,'logged user')
+  controller.user = response.data.user;
   localStorage.setItem('token', JSON.stringify(response.data.token));
-  // controller.hideAllLogin();
-  // controller.displayLogOut = true;
-}, function(error){
-  console.log('I skipped the response')
-});
-// }
+  }.bind(this));
 };
+
+
 
 
 // ===test method below. may want to disable once login tests sucessful===
@@ -112,9 +171,9 @@ this.getUsers = function() {
     if (response.data.status == 401) {
         this.error = "Unauthorized";
     } else {
-      controller.users = response.data;
+      this.users = response.data;
     }
-  });
+  }.bind(this));
 }
 
 //logout //
@@ -125,8 +184,8 @@ localStorage.clear('token');
 location.reload();
 // this.hideAllLogin();
 // this.displayLogin = true;
-};
+}
 
 // ============END LOGIN METHODS=========
 
-}])
+}]);
