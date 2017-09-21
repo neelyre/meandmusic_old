@@ -16,52 +16,6 @@
 
   <body ng-controller="MainController as ctrl">
 
-
-<!-- ==========LOGIN CODE BELOW======== -->
-     <!-- <p>test</p>
-    {{ ctrl.test }}
-
-  //login form// -->
-<!-- <div class="login" ng-if="ctrl.displayLogin">
-  <h3>Login</h3>
-      <form ng-submit="ctrl.login(userPass)">
-        <input type="text" class="loginForm" ng-model="userPass.username" placeholder="username"/>
-        <input type="password" class="loginForm" ng-model="userPass.password" placeholder="password"/>
-      </br><input type="submit" class="formSubmit"/>
-      </form>
-    <p class="noAccount">Don't have an account? </br></p><p class="createAccount"><a href="#" ng-click="ctrl.displayRegistrationDiv();">Create one now</a></p>
-</div>  -
-register form -->
-   <!-- <div class="register" ng-if="ctrl.displayRegistration">
-    < <h3>Register New User</h3>
-
-      <form ng-submit="ctrl.CreateUser(userPass)">
-
-        <input type="text" class="registerForm" ng-model="userPass.username" placeholder="username"/>
-        <input type="password" class="registerForm" ng-model="userPass.password" placeholder="password"/>
-        <input type="text" class="registerForm" ng-model="userPass.first_name" placeholder="first name"/>
-        <input type="text" class="registerForm" ng-model="userPass.last_name" placeholder="last name"/>
-        <input type="integer" class="registerForm" ng-model="userPass.age" placeholder="age"/>
-        <input type="text" class="registerForm" ng-model="userPass.gender" placeholder="gender"/>
-
-      </br><input type="submit" class="registerFormSubmit"/>
-    </form>
-
-      <p>Logged inusername: {{ ctrl.user.username }} </p>
-
-      <h4 ng-click="ctrl.getUsers()">Clickk to see secret stuff</h4>
-      <div> {{ctrl.error }} </div>
-</div -->
-
-
-      <!-- <h3 ng-if="ctrl.displayLogOut">Hello, {{ctrl.user.first_name}}</h3>
-      <button class="logout" ng-click="ctrl.logout();">Log Out</button> -->
-
-      <!-- <div class="userList" ng-if="ctrl.displayLogOut"> -->
-
-        <!-- =========END LOGIN CODE========= -->
-
-
         {{ ctrl.test }}
 
           <p>Logged in username: {{ ctrl.user.username }} </p>
@@ -74,23 +28,34 @@ register form -->
             <h1>{{ user.username }}</h1>
           </div
 
-          <a href="#" ng-click="ctrl.logout()">Log Out</a>
 
+
+<div class="login" ng-if="ctrl.displayLogin">
         <form ng-submit="ctrl.login(userPass)">
    <input type="text" ng-model="userPass.username" placeholder="username"/>
    <input type="password" ng-model="userPass.password" placeholder="password"/>
    <input type="submit"/>
  </form>
+ <p class="noAccount">Don't have an account? </br></p><p class="createAccount"><a href="#" ng-click="ctrl.displayRegistrationDiv();">Create one now</a></p>
+ </div>
 
 
- <!-- <div class="register" ng-if="ctrl.displayRegistration"> -->
+ <div class="register" ng-if="ctrl.displayRegistration">
    <h3>Register New User</h3>
  <form ng-submit="ctrl.createUser(userPass)">
 <input type="text" ng-model="userPass.username" placeholder="username"/>
 <input type="password" ng-model="userPass.password" placeholder="password"/>
+<input type="text" ng-model="userPass.first_name" placeholder="first name"/>
+<input type="text" ng-model="userPass.last_name" placeholder="last name"/>
+<input type="text" ng-model="userPass.instruments" placeholder="what instrument do you play?"/>
+<input type="text" ng-model="userPass.genre" placeholder="what music do you like to listen to?"/>
+
 <input type="submit"/>
 </form>
-<!-- </div> -->
+</div>
+
+<h3 ng-if="ctrl.displayLogOut">Hello, {{ctrl.user.first_name}}</h3>
+<button class="logout" ng-click="ctrl.logout();" ng-if="ctrl.displayLogOut">Log Out</button>
 
 
 
@@ -120,10 +85,42 @@ register form -->
 <button class="reviewButton" ng-click="ctrl.addReviewToMovie()">Add Review</button>
 
 
+<!-- //NG-IF TEXT TESET// -->
+<div ng-if="ctrl.testdisplay">
+  <p> this display is on if test.display is set to true.<p>
+    <button ng-click="ctrl.hideText()">turn texxt off</button>
+  </div>
+    <button ng-click="ctrl.showText()">turn texxt on</button>
+
+    <!-- //NG-IF TEXT TESET// -->
+
+    <!-- <div class="span6">
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th style="min-width: 80px;">First name</th>
+            <th style="min-width: 80px;">Last name</th>
+            <th style="width:20px;"> </th>
+            <th style="width:20px;"> </th>
+        </tr>
+        </thead> -->
+        <!-- <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td><a ng-click="editUser(user.id)" class="btn btn-small btn-primary">edit</a></td>
+            <td><a ng-click="deleteUser(user.id)" class="btn btn-small btn-danger">delete</a></td>
+        </tr>
+        </tbody> -->
+    <!-- </table>
+    <a ng-click="createNewUser()" class="btn btn-small">create new user</a> -->
+<!-- </div>
 
 
 
 
 
 
-</div>
+
+
+</div> -->

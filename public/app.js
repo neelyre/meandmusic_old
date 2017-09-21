@@ -10,6 +10,9 @@ app.controller('MainController', ['$http', function($http){
 
 
   this.test = "hi"
+  this.displayLogin = true;
+  this.displayRegistration = false;
+
   this.instrumentInclude = function(){
 		this.includePath = 'partials/partial1.html';
   }
@@ -50,6 +53,24 @@ app.controller('MainController', ['$http', function($http){
     this.includePath = 'partials/single_instruments/saxophone.html';
   }
 
+  this.displayRegistrationDiv = function(){
+  this.displayRegistration = true;
+  this.displayLogin = false;
+};
+
+  this.hideAllLogin = function(){
+    this.displayLogin = false;
+    this.displayRegistration = false;
+    this.displayLogOut = false;
+  };
+
+this.testdisplay = true;
+this.hideText = function(){
+  this.testdisplay = false;
+};
+this.showText = function(){
+  this.testdisplay = true;
+};
 
 
 
@@ -131,12 +152,12 @@ this.addReview = function(){
      $http({
        method: 'POST',
        url: this.url + '/users',
-       data: { user: { username: userPass.username, password: userPass.password }},
+       data: { user: { username: userPass.username, password: userPass.password, first_name: userPass.first_name, last_name: userPass.last_name, instruments: userPass.instruments, genre: userPass.genre }},
      }).then(function(response) {
        controller.user = response.data;
        console.log(controller.user,'logged user');
-      //  controller.hideAllLogin();
-      //  controller.displayLogOut = true;
+       controller.hideAllLogin();
+       controller.displayLogOut = true;
 
      })
    };
@@ -153,6 +174,8 @@ $http({
   controller.user = response.data.user;
   localStorage.setItem('token', JSON.stringify(response.data.token));
   }.bind(this));
+  controller.hideAllLogin();
+  controller.displayLogOut = true;
 };
 
 
